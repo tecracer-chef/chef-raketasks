@@ -83,23 +83,6 @@ module ChefRake
 
           end # namespace lint
 
-          namespace :unit do
-            desc 'Run ChefSpec unit tests for cookbook'
-            task :cookbook do
-              begin
-                require 'rspec/core/rake_task'
-                RSpec::Core::RakeTask.new(:unit) do |t|
-                  # If we are in CI mode then add formatter options
-                  t.rspec_opts = ENV['CI'] ? '--format RspecJunitFormatter --out reports/unit/chefspec.xml' : '--color --format progress'
-                  t.pattern = 'test/unit/**{,/*/**}/*_spec.rb'
-                end
-              rescue Exception => e
-                puts ">>> Gem load error: #{e}, omitting tests:unit" unless ENV['CI']
-              end
-            end
-
-          end # namespace unit
-
         end # namespace test
 
       end # def initialize
