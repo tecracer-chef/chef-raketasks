@@ -1,6 +1,19 @@
 #
-# ChefRake::Task::Gem
-# Add tasks for installing gems
+# Author:: Patrick Schaumburg (<pschaumburg@tecracer.de>)
+# Copyright:: Copyright 2020, tecRacer Group
+# License:: Apache License, Version 2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 #
 
 module ChefRake
@@ -21,24 +34,6 @@ module ChefRake
               cmd << "--no-document"
 
               sh cmd
-            end
-
-            # NAMESPACE: gem:install:generator
-            desc 'Installs all Cookbook generators'
-            task :generator => [
-              :'gem:install:generator:appinstall',
-              :'gem:install:generator:tenv',
-            ]
-            namespace :generator do
-              desc 'Installs cookbook generator for appinstall'
-              task :appinstall, [:version, :source] do |_t, args|
-                install_gem('sgre-appinstall-chef-generator', args.version, args.source)
-              end
-
-              desc 'Installs cookbook generator for tenv'
-              task :appinstall, [:version, :source] do |_t, args|
-                puts 'your installer could be placed here'
-              end
             end
 
             # NAMESPACE: gem:install:static
@@ -72,7 +67,6 @@ module ChefRake
             end # namespace vcenter
           end # namespace install
         end # namespace gem
-
       end # def initialize
     end # class Gem
   end # module RakeTasks
