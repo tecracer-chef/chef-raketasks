@@ -25,15 +25,14 @@ module ChefRake
 
         namespace :test do
           desc 'Run all integration tests'
-          task :integration => [
-            :'integration:ec2',
-            :'integration:physical',
-            :'integration:vagrant',
-            :'integration:vcenter',
+          task integration: %i[
+            integration:ec2
+            integration:physical
+            integration:vagrant
+            integration:vcenter
           ]
 
           namespace :integration do
-
             def kitchen_instances(regexp, config)
               # Gets a collection of instances.
               #
@@ -43,9 +42,14 @@ module ChefRake
               active_config = Kitchen::Config.new(config)
               # If we are in CI mode then add formatter options (@refactor)
               kitchen_config = active_config.send(:data).send(:data)
-              kitchen_config[:verifier][:reporter] = ['junit:reports/integration/inspec_%{platform}_%{suite}.xml'] if ENV['CI']
+
+              if ENV['CI']
+                kitchen_config[:verifier][:reporter] = ['junit:reports/integration/inspec_%{platform}_%{suite}.xml']
+              end
+
               instances = active_config.instances
               return instances if regexp.nil? || regexp == 'all'
+
               instances.get_all(Regexp.new(regexp))
             end
 
@@ -61,7 +65,7 @@ module ChefRake
               Kitchen.logger = Kitchen.default_file_logger
               config = { loader: Kitchen::Loader::YAML.new(loader_config) }
               kitchen_instances(regexp, config).each { |i| i.send(action) }
-            rescue Exception => e
+            rescue StandardError
               # Clean up on any error
               kitchen_instances(regexp, config).each { |i| i.send('destroy') }
             end
@@ -85,7 +89,6 @@ module ChefRake
             task :vcenter, [:regexp, :action] do |_t, args|
               run_kitchen(args.action, args.regexp, local_config: '.kitchen.vcenter.yml')
             end
-
           end # namespace integration
 
           namespace :lint do
@@ -94,7 +97,6 @@ module ChefRake
               puts 'running cookstyle for cookbook'
               puts `cookstyle`
             end
-
           end # namespace lint
         end # namespace test
       end # def initialize

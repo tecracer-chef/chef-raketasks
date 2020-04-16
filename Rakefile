@@ -5,8 +5,8 @@ require 'bundler/gem_tasks'
 require 'rubygems/package_task'
 
 include Rake::DSL if defined? Rake::DSL
+
 class Package < ::Rake::TaskLib
-  # General GEM creation
   desc 'Build the gem file'
   task :build do
     Dir.chdir(Rake.application.original_dir)
@@ -15,11 +15,12 @@ class Package < ::Rake::TaskLib
 
     filename = Dir.glob('*.gemspec')
     raise! 'No gemspec found, pack:gem aborted!' if filename.nil? || filename.empty?
-    gemspec  = Kernel.eval(File.read(filename.first))
+
+    gemspec = Kernel.eval(File.read(filename.first))
     Gem::PackageTask.new(gemspec) do |t|
       t.name = gemspec.name
       t.version = gemspec.version
-      t.package_dir = "pkg"
+      t.package_dir = 'pkg'
       t.package_files = gemspec.files
     end
     Rake::Task['build'].invoke

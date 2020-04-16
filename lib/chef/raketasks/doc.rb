@@ -27,7 +27,7 @@ module ChefRake
           require 'yaml'
           require 'yard'
           YARD::Rake::YardocTask.new do |t|
-            t.stats_options = %w(--list-undoc)
+            t.stats_options = %w[--list-undoc]
           end
         end
 

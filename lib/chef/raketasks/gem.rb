@@ -25,21 +25,20 @@ module ChefRake
         namespace :gem do
           desc 'gem:install'
           namespace :install do
-
             def install_gem(name, version, source)
-              cmd = "chef gem install "
-              cmd << name + " "
+              cmd = 'chef gem install '
+              cmd << name + ' '
               cmd << "-v #{version} " unless version.nil?
               cmd << "-s #{source} " unless source.nil?
-              cmd << "--no-document"
+              cmd << '--no-document'
 
               sh cmd
             end
 
             # NAMESPACE: gem:install:static
             desc 'Installs necessary static gems for kitchen'
-            task :static => [
-              :'gem:install:static:kitchen',
+            task static: %i[
+              gem:install:static:kitchen
             ]
             namespace :static do
               desc 'Installs kitchen-static for kitchen'
@@ -50,9 +49,9 @@ module ChefRake
 
             # NAMESPACE: gem:install:vcenter
             desc 'Installs necessary vcenter gems for kitchen'
-            task :vcenter => [
-              :'gem:install:vcenter:sdk',
-              :'gem:install:vcenter:kitchen',
+            task vcenter: %i[
+              gem:install:vcenter:sdk
+              gem:install:vcenter:kitchen
             ]
             namespace :vcenter do
               desc 'Installs vcenter sdk for kitchen'

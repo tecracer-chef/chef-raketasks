@@ -4,7 +4,7 @@ require 'chef/raketasks/version'
 
 Gem::Specification.new do |spec|
   spec.name           = 'chef-raketasks'
-  spec.version        =  ChefRake::Task::VERSION
+  spec.version        = ChefRake::Task::VERSION
   spec.licenses       = ['Nonstandard']
   spec.authors        = ['Patrick Schaumburg']
   spec.email          = ['pschaumburg@tecracer.de']
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.files           = Dir['lib/**/**/**']
   spec.files          += ['README.md', 'CHANGELOG.md']
 
-  spec.required_ruby_version = '>= 2.3'
+  spec.required_ruby_version = '>= 2.5'
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'mdl', '~> 0.4'
@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'berkshelf'
   spec.add_dependency 'parse_gemspec', '~> 1.0'
   spec.add_dependency 'rake', '~> 13.0'
-  spec.add_dependency 'rspec'#, '~> 3.7'
+  spec.add_dependency 'rspec'
   spec.add_dependency 'yard'
 
   spec.post_install_message = 'Add `require \'chef-raketasks\'` to your `Rakefile`.'

@@ -26,16 +26,16 @@ module ChefRake
           desc 'Removes cache dirs from any local chef installation'
           task :chefcache do
             cachedirs = [
-              ENV['HOME'] + "/.chef/cache",
-              ENV['HOME'] + "/.chefdk/cache",
-              ENV['HOME'] + "/.chef-workstation/cache"
+              ENV['HOME'] + '/.chef/cache',
+              ENV['HOME'] + '/.chefdk/cache',
+              ENV['HOME'] + '/.chef-workstation/cache'
             ]
             cachedirs.each { |f| FileUtils.rm_rf(Dir.glob(f)) }
           end
 
           desc 'Removes any temporary files from a cookbook'
           task :cookbook do
-            %w(
+            %w[
               Berksfile.lock
               .bundle
               .cache
@@ -52,12 +52,12 @@ module ChefRake
               vendor
               .yardoc
               .DS_Store
-            ).each { |f| FileUtils.rm_rf(Dir.glob(f)) }
+            ].each { |f| FileUtils.rm_rf(Dir.glob(f)) }
           end
 
           desc 'Removes any temporary files from an InSpec profile'
           task :inspec do
-            %w(
+            %w[
               inspec.lock
               coverage
               doc/
@@ -68,11 +68,11 @@ module ChefRake
               vendor
               .yardoc
               .DS_Store
-            ).each { |f| FileUtils.rm_rf(Dir.glob(f)) }
+            ].each { |f| FileUtils.rm_rf(Dir.glob(f)) }
           end
         end
 
-        task :clean => :'clean:cookbook'
+        task clean: :'clean:cookbook'
 
       end # def initialize
     end # class Clean

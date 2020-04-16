@@ -7,9 +7,11 @@ make life easier with chef.
 
 ## Requirements
 
-* berkshelf
-* rake
-* yard
+* Chef Infra >= 14.0
+* Gems
+  * berkshelf
+  * rake
+  * yard
 
 ## Usage
 
@@ -20,7 +22,7 @@ Include the Gem via ```require 'chef-raketasks'``` at the top of your
 Rakefile. After that, just run ```rake -T``` or ```rake --tasks``` to see all
 available tasks.
 
-## Available tasks
+## Cleanup Tasks
 
 ### rake clean:chefcache
 
@@ -37,6 +39,8 @@ Based on your current position in your filesystem.
 Removes any temporary files from an InSpec profile.
 Based on your current position in your filesystem.
 
+## Installation Tasks
+
 ### rake gem:install:static
 
 Installs latest version of kitchen-static gem.
@@ -44,6 +48,7 @@ Installs latest version of kitchen-static gem.
 ### rake gem:install:static:kitchen[version,source]
 
 Installs `kitchen-static` for kitchen.
+
 * `version`: define a specific version of the gem
 * `source`: define a different source than rubygems.org
 
@@ -54,14 +59,18 @@ Installs latest version of kitchen-vcenter and related gems.
 ### rake gem:install:vcenter:kitchen[version,source]
 
 Installs kitchen-vcenter for kitchen
+
 * `version`: define a specific version of the gem
 * `source`: define a different source than rubygems.org
 
 ### rake gem:install:vcenter:sdk[version,source]
 
 Installs vcenter sdk for kitchen.
+
 * `version`: define a specific version of the gem
 * `source`: define a different source than rubygems.org
+
+## Packaging Tasks
 
 ### rake package:cookbook
 
@@ -76,9 +85,12 @@ Package InSpec profile as .tgz file
 
 Generate new policyfile lock
 
+## Release Tasks
+
 ### rake release:artifactory[endpoint,apikey,repokey,path]
 
 Upload to Artifactory with required settings like:
+
 * `endpoint`: defines the url of artifactory
 * `apikey`: the api key from artifactory with the necessary rights
 * `repokey`: add the repokey for artifactory
@@ -94,24 +106,65 @@ It uses the current configured supermarket in your knife.rb or config.rb.
 Upload to Chef Supermarket.
 It uses the current configured supermarket in your knife.rb or config.rb.
 
+## Test Tasks
+
 ### rake test:integration:ec2[regexp,action]
 
 Run integration tests on AWS EC2
 
+* `regexp`: Suite identifier (when calling `kitchen windows test`, this would be
+  `windows`. Default: all)
+* `action`: Kitchen action (default: `test`)
+
+For this, your `.kitchen.yml` file gets merged with `.kitchen.ec2.yml` which
+includes the driver settings.
+
+Example:
+
+```yaml
+driver:
+  name: ec2
+  aws_ssh_key_id: testkitchen
+  region: eu-west-1
+  subnet_id: subnet-123456789
+  security_group_ids: [...]
+  iam_profile_name: ChefKitchen
+  instance_type: t3a.small
+  skip_cost_warning: true
+  tags:
+    Name: ChefKitchen
+    CreatedBy: test-kitchen
+```
+
+Details at <https://github.com/test-kitchen/kitchen-ec2>
+
 ### rake test:integration:static[regexp,action]
 
-Run integration tests using static IPs.
-You can add some regex and action like you do with kitchen itself.
+Run integration tests using static IPs (e.g. physical hosts).
+
+You can add some regex and action like you do with kitchen itself. The platform
+specific file for this task is `.kitchen.static.yml`.
+
+Details at <https://github.com/tecracer-theinen/kitchen-static>
 
 ### rake test:integration:vagrant[regexp,action]
 
-Run integration tests locally with vagrant.
-You can add some regex and action like you do with kitchen itself.
+Run integration tests using Vagrant.
+
+You can add some regex and action like you do with kitchen itself. The platform
+specific file for this task is `.kitchen.vagrant.yml`.
+
+Details at <https://github.com/test-kitchen/kitchen-vagrant>
 
 ### rake test:integration:vcenter[regexp,action]
 
 Run integration tests using vCenter.
-You can add some regex and action like you do with kitchen itself.
+
+You can add some regex and action like you do with kitchen itself. The platform
+specific file for this task is `.kitchen.vcenter.yml`.
+
+Details at <https://github.com/chef/kitchen-vcenter>
+
 
 ### rake test:lint:cookbook
 
@@ -131,10 +184,10 @@ Ideally create a topic branch for every separate change you make. For
 example:
 
 1. Fork the repo
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+1. Create your feature branch (`git checkout -b my-new-feature`)
+1. Commit your changes with signing them (`git commit -s -am 'Added some feature'`)
+1. Push to the branch (`git push origin my-new-feature`)
+1. Create new Pull Request
 
 ## License
 
