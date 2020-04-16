@@ -1,0 +1,37 @@
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - Rakefile
+
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: false
+Layout/LineLength:
+  Max: 120
+
+Lint/NestedMethodDefinition:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - 'lib/chef-raketasks.rb'
+
+Style/CommentedKeyword:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
