@@ -1,0 +1,7 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - './**/*'
+
+Lint/NestedMethodDefinition:
+  Enable: false
