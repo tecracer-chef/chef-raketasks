@@ -1,5 +1,7 @@
 name: Linting
 
+on: push
+
 jobs:
   lint:
     name: Lint code
