@@ -3,8 +3,6 @@ name: Ruby Gem
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -16,7 +14,11 @@ jobs:
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.6.x
+        ruby-version: 2.5.x
+
+    - name: Install necessary gems
+      run: |
+        gem install rotp -v 5.1.0 --no-document
 
     - name: Publish to RubyGems
       run: |
@@ -25,6 +27,8 @@ jobs:
         chmod 0600 $HOME/.gem/credentials
         printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
         gem build *.gemspec
-        gem push *.gem
+        OTPTOKEN=$(rotp --secret ${GEM_HOST_OTP_SECRET})
+        gem push *.gem --otp $OTPTOKEN
       env:
         GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
+        GEM_HOST_OTP_SECRET: ${{secrets.RUBYGEMS_OTP_SECRET}}

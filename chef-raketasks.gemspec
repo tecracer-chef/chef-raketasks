@@ -5,7 +5,7 @@ require 'chef/raketasks/version'
 Gem::Specification.new do |spec|
   spec.name           = 'chef-raketasks'
   spec.version        = ChefRake::Task::VERSION
-  spec.licenses       = ['Nonstandard']
+  spec.licenses       = ['Apache-2.0']
   spec.authors        = ['Patrick Schaumburg']
   spec.email          = ['pschaumburg@tecracer.de']
 
