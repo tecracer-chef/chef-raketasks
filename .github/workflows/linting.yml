@@ -15,8 +15,8 @@ jobs:
         ruby-version: 2.6.x
 
     - name: Install necessary gems
-          run: |
-            gem install rubocop --no-ri --no-rdoc
+      run: |
+        gem install rubocop --no-ri --no-rdoc
 
     - name: Run RuboCop
       run: |
