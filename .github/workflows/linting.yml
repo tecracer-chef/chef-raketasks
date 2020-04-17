@@ -16,4 +16,5 @@ jobs:
 
     - name: Run RuboCop
       run: |
+        gem install rubocop
         rubocop
