@@ -16,7 +16,7 @@ jobs:
 
     - name: Install necessary gems
       run: |
-        gem install rubocop --no-ri --no-rdoc
+        gem install rubocop --no-document
 
     - name: Run RuboCop
       run: |
