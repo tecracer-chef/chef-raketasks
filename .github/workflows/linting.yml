@@ -17,9 +17,6 @@ jobs:
     - name: Install necessary gems
       run: |
         gem install rubocop --no-document
-        echo $TEST
-      env:
-        TEST: ${{secrets.mytopsecret}}
 
     - name: Run RuboCop
       run: |
