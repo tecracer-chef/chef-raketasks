@@ -22,11 +22,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'mdl', '~> 0.4'
   spec.add_development_dependency 'rubocop-rspec', '~> 1.18'
 
-  spec.add_dependency 'berkshelf'
+  spec.add_dependency 'berkshelf', '~> 7.0'
   spec.add_dependency 'parse_gemspec', '~> 1.0'
   spec.add_dependency 'rake', '~> 13.0'
-  spec.add_dependency 'rspec'
-  spec.add_dependency 'yard'
+  spec.add_dependency 'rspec', '~> 3.9'
+  spec.add_dependency 'yard', '~> 0.9'
 
   spec.post_install_message = 'Add `require \'chef-raketasks\'` to your `Rakefile`.'
 end
