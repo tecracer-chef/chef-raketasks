@@ -1,5 +1,8 @@
 # chef-raketasks
 
+![Linting](https://github.com/tecracer/chef-raketasks/workflows/Linting/badge.svg?branch=master)
+![Ruby Gem](https://github.com/tecracer/chef-raketasks/workflows/Ruby%20Gem/badge.svg)
+
 ## Summary
 
 A RubyGem which helps out with some technical functionality to
