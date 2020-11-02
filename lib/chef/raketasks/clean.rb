@@ -21,14 +21,15 @@ module ChefRake
     include Rake::DSL if defined? Rake::DSL
     class Clean < ::Rake::TaskLib
       def initialize
+        super
 
         namespace :clean do
           desc 'Removes cache dirs from any local chef installation'
           task :chefcache do
             cachedirs = [
-              ENV['HOME'] + '/.chef/cache',
-              ENV['HOME'] + '/.chefdk/cache',
-              ENV['HOME'] + '/.chef-workstation/cache'
+              File.join(ENV['HOME'], '.chef/cache'),
+              File.join(ENV['HOME'], '.chefdk/cache'),
+              File.join(ENV['HOME'], '.chef-workstation/cache')
             ]
             cachedirs.each { |f| FileUtils.rm_rf(Dir.glob(f)) }
           end

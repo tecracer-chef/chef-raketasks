@@ -22,6 +22,7 @@ module ChefRake
     include Rake::DSL if defined? Rake::DSL
     class Test < ::Rake::TaskLib
       def initialize
+        super
 
         namespace :test do
           desc 'Run all integration tests'

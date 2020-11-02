@@ -24,6 +24,7 @@ require_relative 'chef/raketasks/doc'
 require_relative 'chef/raketasks/gem'
 require_relative 'chef/raketasks/package'
 require_relative 'chef/raketasks/release'
+require_relative 'chef/raketasks/repin'
 require_relative 'chef/raketasks/test'
 require_relative 'chef/raketasks/version'
 

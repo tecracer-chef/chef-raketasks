@@ -22,6 +22,7 @@ module ChefRake
     include Rake::DSL if defined? Rake::DSL
     class Package < ::Rake::TaskLib
       def initialize
+        super
 
         namespace :package do
           desc 'Package cookbook as .tgz file'
@@ -64,13 +65,13 @@ module ChefRake
             abs_path = File.join(current_dir, pkg_rel_path)
 
             Dir.mkdir(pkg_path) unless Dir.exist?(pkg_path)
-            Dir.mkdir(ENV['HOME'] + '/.inspec/cache') unless Dir.exist?(ENV['HOME'] + '/.inspec/cache')
+            Dir.mkdir File.join(ENV['HOME'], '.inspec/cache') unless Dir.exist? File.join(ENV['HOME'], '.inspec/cache')
 
             cmd = Train.create('local', command_runner: :generic).connection
             command = 'inspec'
-            command << ' archive ' + current_dir
+            command << " archive #{current_dir}"
             command << ' --overwrite'
-            command << ' --output ' + abs_path
+            command << " --output #{abs_path}"
             # command << ' --vendor-cache=' + ENV['HOME'] + "/.inspec/cache" # looks like this has an error in main code
 
             puts command

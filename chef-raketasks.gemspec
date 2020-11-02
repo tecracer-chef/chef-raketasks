@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.name           = 'chef-raketasks'
   spec.version        = ChefRake::Task::VERSION
   spec.licenses       = ['Apache-2.0']
-  spec.authors        = ['Patrick Schaumburg']
-  spec.email          = ['pschaumburg@tecracer.de']
+  spec.authors        = ['Patrick Schaumburg', 'Thomas Heinen']
+  spec.email          = ['pschaumburg@tecracer.de', 'theinen@tecracer.de']
 
   spec.summary        = 'Collection of reusable Rake tasks for Chef'
   spec.description    = 'Provides a central repository of the most essential tasks'
@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'parse_gemspec', '~> 1.0'
   spec.add_dependency 'rake', '~> 13.0'
   spec.add_dependency 'rspec', '~> 3.9'
+  spec.add_dependency 'rubocop', '~> 1.1'
   spec.add_dependency 'yard', '~> 0.9'
 
   spec.post_install_message = 'Add `require \'chef-raketasks\'` to your `Rakefile`.'
