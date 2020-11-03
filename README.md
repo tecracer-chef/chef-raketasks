@@ -25,6 +25,9 @@ Include the Gem via ```require 'chef-raketasks'``` at the top of your
 Rakefile. After that, just run ```rake -T``` or ```rake --tasks``` to see all
 available tasks.
 
+If you start a Rake task with parameters, please assure to not use spaces
+between `[ ]`. This will result in `Don't know how to build task` errors. 
+
 ## Cleanup Tasks
 
 ### rake clean:chefcache
@@ -109,6 +112,32 @@ It uses the current configured supermarket in your knife.rb or config.rb.
 Upload to Chef Supermarket.
 It uses the current configured supermarket in your knife.rb or config.rb.
 
+## Repin Tasks
+
+### rake repin:chef-client[gem,version]
+
+Allows repinning dependencies in executables delivered with Chef Workstation.
+This is often needed if you do private/prerelease builds of Chef components
+like Kitchen drivers or InSpec plugins.
+
+As the Chef installers hard-pin the versions in `/opt/chef-workstation/bin`
+files, this needs the privileges to modify those files as well.
+
+* `gem`: name of the dependency
+* `version`: new version to pin
+
+### rake repin:inspec[gem,version]
+
+See `repin:chef-client`
+
+### rake repin:kitchen[gem,version]
+
+See `repin:chef-client`
+
+### rake repin:ohai[gem,version]
+
+See `repin:chef-client`
+
 ## Test Tasks
 
 ### rake test:integration:ec2[regexp,action]
@@ -167,7 +196,6 @@ You can add some regex and action like you do with kitchen itself. The platform
 specific file for this task is `.kitchen.vcenter.yml`.
 
 Details at <https://github.com/chef/kitchen-vcenter>
-
 
 ### rake test:lint:cookbook
 

@@ -21,13 +21,14 @@ module ChefRake
     include Rake::DSL if defined? Rake::DSL
     class Gem < ::Rake::TaskLib
       def initialize
+        super
 
         namespace :gem do
           desc 'gem:install'
           namespace :install do
             def install_gem(name, version, source)
               cmd = 'chef gem install '
-              cmd << name + ' '
+              cmd << "#{name} "
               cmd << "-v #{version} " unless version.nil?
               cmd << "-s #{source} " unless source.nil?
               cmd << '--no-document'

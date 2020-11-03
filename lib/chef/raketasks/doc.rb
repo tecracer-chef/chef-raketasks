@@ -21,6 +21,7 @@ module ChefRake
     include Rake::DSL if defined? Rake::DSL
     class Doc < ::Rake::TaskLib
       def initialize
+        super
 
         desc 'Generate Ruby documentation'
         task :doc do

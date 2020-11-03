@@ -21,6 +21,7 @@ module ChefRake
     include Rake::DSL if defined? Rake::DSL
     class Release < ::Rake::TaskLib
       def initialize
+        super
 
         namespace :release do
           desc 'Upload to Artifactory'
@@ -38,7 +39,7 @@ module ChefRake
             require 'artifactory'
             Artifactory.endpoint = args.endpoint # @TODO: Remove trailing slash, if exist
             Artifactory.api_key = args.apikey
-            targetpath = args.path + '/' + file_name
+            targetpath = File.join(args.path, file_name)
 
             artifact = Artifactory::Resource::Artifact.new(local_path: abs_path)
             upload = artifact.upload(args.repokey, targetpath)
