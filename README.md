@@ -26,7 +26,7 @@ Rakefile. After that, just run ```rake -T``` or ```rake --tasks``` to see all
 available tasks.
 
 If you start a Rake task with parameters, please assure to not use spaces
-between `[ ]`. This will result in `Don't know how to build task` errors. 
+between `[ ]`. This will result in `Don't know how to build task` errors.
 
 ## Cleanup Tasks
 
@@ -197,9 +197,11 @@ specific file for this task is `.kitchen.vcenter.yml`.
 
 Details at <https://github.com/chef/kitchen-vcenter>
 
-### rake test:lint:cookbook
+### rake test:lint:cookbook[autocorrect]
 
 Run linting tests for cookbook in current dir.
+
+You can add true as option to auto-correct found issues that can be automatically fixed.
 
 ## Contributing
 

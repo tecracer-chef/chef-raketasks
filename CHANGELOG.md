@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.3.0
+
+- Enable `cookstyle` as linting option for `rake test:lint:cookbook[autocorrect]` with autocorrect options
+
 ## Version 0.2.0
 
 - Add `repin` tasks
