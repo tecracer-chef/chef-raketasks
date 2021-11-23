@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description    = 'Provides a central repository of the most essential tasks'
   spec.homepage       = 'https://www.tecracer.de'
 
-  spec.metadata['rubygems_mfa_required'] = true
+  spec.metadata       = { 'rubygems_mfa_required' => true }
 
   spec.files           = Dir['lib/**/**/**']
   spec.files          += ['README.md', 'CHANGELOG.md']
