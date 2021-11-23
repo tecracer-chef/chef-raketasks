@@ -94,9 +94,12 @@ module ChefRake
 
           namespace :lint do
             desc 'Run linting tests for cookbook'
-            task :cookbook do
-              puts 'running cookstyle for cookbook'
-              puts `cookstyle`
+            task :cookbook, [:autocorrect] do |_t, args|
+              args.with_defaults(autocorrect: false)
+
+              cmd = 'cookstyle'
+              cmd << ' --auto-correct' if args.autocorrect
+              sh cmd
             end
           end # namespace lint
         end # namespace test
