@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.4.
+## Version 0.4.0
 
 - Extend rake release:supermarket with multiple additional options
 
