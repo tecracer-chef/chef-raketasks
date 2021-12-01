@@ -4,4 +4,4 @@ on: push
 
 jobs:
   rubygem-linting:
-    uses: tecracer-chef/.github/.github/workflows/rubygem-publish.yml@master
+    uses: tecracer-chef/.github/.github/workflows/rubygem-linting.yml@master
