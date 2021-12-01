@@ -73,8 +73,8 @@ module ChefRake
           desc 'Vendors gems into cookbook'
           task :vendor, [:gemname, :version, :source, :installdir] do |_t, args|
             args.with_defaults(
-              version: ::Gem::Requirement.default.to_s, # will use latest when not set
-              source: 'https://rubygems.org',
+              version: '>= 0', # so use latest when not set
+              source: nil,
               installdir: 'files/default/vendor'
             )
 
