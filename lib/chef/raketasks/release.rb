@@ -70,7 +70,7 @@ module ChefRake
           end
 
           desc 'Upload to Chef Supermarket'
-          task :supermarket do
+          task :supermarket, [:siteurl, :user, :authkeyfile, :cookbookpath, :cookbookname, :configfile] do |_t, args|
             Rake::Task['clean:cookbook'].execute
 
             require 'berkshelf'
@@ -79,8 +79,20 @@ module ChefRake
             metadata = Chef::Cookbook::Metadata.new
             metadata.from_file File.join(current_dir, 'metadata.rb')
 
+            args.with_defaults(
+              cookbookpath: parent_dir
+            )
+
             cmd = "knife supermarket share #{metadata.name}"
-            cmd << " --cookbook-path #{parent_dir}"
+            if args.configfile.nil?
+              cmd << " --cookbook-path #{parent_dir}"
+              cmd << " --supermarket-site #{args.siteurl}" unless args.siteurl.nil?
+              cmd << " --user #{args.user}" unless args.user.nil?
+              cmd << " --key #{args.authkeyfile}" unless args.authkeyfile.nil?
+            elsif args.configfile
+              cmd << " --config #{args.configfile}" unless args.configfile.nil?
+            end
+
             sh cmd
 
             # require 'chef/mixin/shell_out'

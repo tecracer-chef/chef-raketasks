@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.4.0
+
+- Extend rake release:supermarket with multiple additional options
+
 ## Version 0.3.0
 
 - Enable `cookstyle` as linting option for `rake test:lint:cookbook[autocorrect]` with autocorrect options

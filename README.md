@@ -114,10 +114,19 @@ Upload to Artifactory with required settings like:
 Upload to Chef Server.
 It uses the current configured supermarket in your knife.rb or config.rb.
 
-### rake release:supermarket
+### rake release:supermarket[siteurl,user,authkeyfile,cookbookpath,cookbookname,configfile]
 
 Upload to Chef Supermarket.
 It uses the current configured supermarket in your knife.rb or config.rb.
+
+You are also allowed to use multiple additional settings:
+
+* `siteurl`: defines the url of a Chef Supermarket
+* `user`: the user to authenticate
+* `authkeyfile`: the keyfile to use (it must be a file present on your system)
+* `cookbookpath`: the path where to look up for cookbooks (default: `../`)
+* `cookbookname`: define different cookbookname instead of the current one
+* `configfile`: define a config.rb file instead of the settings above (this might look like `rake release:supermarket[,,,,,~/.chef/config.rb]`)
 
 ## Repin Tasks
 
