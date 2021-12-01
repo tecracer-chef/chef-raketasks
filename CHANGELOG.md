@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.5.0
+
+- Add gem:vendor as new raketask to vendor gems for cookbooks and others
+
 ## Version 0.4.0
 
 - Extend rake release:supermarket with multiple additional options
