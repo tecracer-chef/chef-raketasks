@@ -30,7 +30,7 @@ module ChefRake
             cmd << "-v \"#{version}\" " unless version.nil?
             cmd << "-s #{source} " unless source.nil?
             cmd << "--install-dir #{installdir} " unless installdir.nil? # used mostly for vendoring
-            cmd << "--no-user-install " unless installdir.nil? # used for vendoring
+            cmd << '--no-user-install ' unless installdir.nil? # used for vendoring
             cmd << '--no-document'
 
             sh cmd

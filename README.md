@@ -76,6 +76,13 @@ Installs vcenter sdk for kitchen.
 * `version`: define a specific version of the gem
 * `source`: define a different source than rubygems.org
 
+### rake gem:vendor[gemname, version, source, installdir]
+
+Installs vcenter sdk for kitchen.
+
+* `version`: define a specific version of the gem
+* `source`: define a different source than rubygems.org
+
 ## Packaging Tasks
 
 ### rake package:cookbook
