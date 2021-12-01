@@ -80,12 +80,7 @@ module ChefRake
             metadata.from_file File.join(current_dir, 'metadata.rb')
 
             args.with_defaults(
-              siteurl: nil,
-              user: nil,
-              authkeyfile: nil,
-              cookbookpath: parent_dir,
-              cookbookname: nil,
-              configfile: nil
+              cookbookpath: parent_dir
             )
 
             cmd = "knife supermarket share #{metadata.name}"
