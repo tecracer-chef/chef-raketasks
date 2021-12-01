@@ -24,18 +24,20 @@ module ChefRake
         super
 
         namespace :gem do
+          def install_gem(name, version, source, installdir)
+            cmd = 'chef gem install '
+            cmd << "#{name} "
+            cmd << "-v \"#{version}\" " unless version.nil?
+            cmd << "-s #{source} " unless source.nil?
+            cmd << "--install-dir #{installdir} " unless installdir.nil? # used mostly for vendoring
+            cmd << '--no-user-install ' unless installdir.nil? # used for vendoring
+            cmd << '--no-document'
+
+            sh cmd
+          end
+
           desc 'gem:install'
           namespace :install do
-            def install_gem(name, version, source)
-              cmd = 'chef gem install '
-              cmd << "#{name} "
-              cmd << "-v #{version} " unless version.nil?
-              cmd << "-s #{source} " unless source.nil?
-              cmd << '--no-document'
-
-              sh cmd
-            end
-
             # NAMESPACE: gem:install:static
             desc 'Installs necessary static gems for kitchen'
             task static: %i[
@@ -66,6 +68,18 @@ module ChefRake
               end
             end # namespace vcenter
           end # namespace install
+
+          # NAMESPACE: gem:vendor
+          desc 'Vendors gems into cookbook'
+          task :vendor, [:gemname, :version, :source, :installdir] do |_t, args|
+            args.with_defaults(
+              version: '>= 0', # so use latest when not set
+              source: nil,
+              installdir: 'files/default/vendor'
+            )
+
+            install_gem(args.gemname, args.version, args.source, args.installdir)
+          end
         end # namespace gem
       end # def initialize
     end # class Gem
