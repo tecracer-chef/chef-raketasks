@@ -78,10 +78,12 @@ Installs vcenter sdk for kitchen.
 
 ### rake gem:vendor[gemname, version, source, installdir]
 
-Installs vcenter sdk for kitchen.
+Vendors rubygems to a specific directory inside the cookbook
 
+* `gemname`: the name of the gem to be used
 * `version`: define a specific version of the gem
 * `source`: define a different source than rubygems.org
+* `installdir`: define the desired targetdir where the vendoring should happen
 
 ## Packaging Tasks
 
